@@ -5,37 +5,44 @@ from skfuzzy import control as ctrl
 
 SCALE = 1
 
-class FuzzyLogicModel():
+class FuzzyLogicModel:
 	"""
 		Input Variables
 		+SCALE for visulize in graph
 	"""
-	@staticmethod
-	def get_ouput(latency, scalability,
+
+	def __init__(self, latency, scalability,
 		syntactic_validaty,	trustworthiness,
 		timeliness):
 
+		self.latency = latency
+		self.scalability = scalability
+		self.syntactic_validaty = syntactic_validaty
+		self.trustworthiness = trustworthiness
+		self.timeliness = timeliness
+
+	def get_output(self):
+
 		print "--> get_output"
 
-		rules = FuzzyLogicModel.get_rules()
+		rules = self.get_rules()
 		tipping_ctrl = ctrl.ControlSystem(rules)
 		tipping = ctrl.ControlSystemSimulation(tipping_ctrl)
 
-		tipping.input['latency'] = latency
-		tipping.input['scalability'] = scalability
-		tipping.input['syntactic_validaty'] = syntactic_validaty
-		tipping.input['trustworthiness'] = trustworthiness
-		tipping.input['timeliness'] = timeliness
+		tipping.input['latency'] = self.latency
+		tipping.input['scalability'] = self.scalability
+		tipping.input['syntactic_validaty'] = self.syntactic_validaty
+		tipping.input['trustworthiness'] = self.trustworthiness
+		tipping.input['timeliness'] = self.timeliness
 
 		tipping.compute()
 		return tipping.output['quality']
 
-	@staticmethod
-	def get_rules():
+	def get_rules(self):
 
 		print "--> get_rules"
 
-		inputs_outputs, graphs = FuzzyLogicModel.get_model()
+		inputs_outputs, graphs = self.get_model()
 
 		#Latency Rules
 		rule_1 = ctrl.Rule(
@@ -144,8 +151,8 @@ class FuzzyLogicModel():
 			rule_10, rule_12, rule_13,
 			rule_14, rule_15]
 
-	@staticmethod
-	def get_model():
+
+	def get_model(self):
 		print "----> get model"
 
 		latency = ctrl.Antecedent(np.arange(0, 52+SCALE, 1), 'latency')
@@ -241,10 +248,9 @@ class FuzzyLogicModel():
 			timeliness, quality
 			]
 
-	@staticmethod
-	def show_graphs():
+	def show_graphs(self):
 		print "----> Show graphs"
-		i_o, graphs = FuzzyLogicModel.get_model()
+		i_o, graphs = self.get_model()
 
 		for var in graphs:
 			var.view()
