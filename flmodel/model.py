@@ -5,7 +5,7 @@ from skfuzzy import control as ctrl
 
 SCALE = 1
 
-class FuzzyLogicModel:
+class FuzzyLogicModel():
 	"""
 		Input Variables
 		+SCALE for visulize in graph
@@ -15,7 +15,9 @@ class FuzzyLogicModel:
 		syntactic_validaty,	trustworthiness,
 		timeliness):
 
-		rules = get_rules()
+		print "--> get_output"
+
+		rules = FuzzyLogicModel.get_rules()
 		tipping_ctrl = ctrl.ControlSystem(rules)
 		tipping = ctrl.ControlSystemSimulation(tipping_ctrl)
 
@@ -30,7 +32,10 @@ class FuzzyLogicModel:
 
 	@staticmethod
 	def get_rules():
-		inputs_outputs, graphs = get_model()
+
+		print "--> get_rules"
+
+		inputs_outputs, graphs = FuzzyLogicModel.get_model()
 
 		#Latency Rules
 		rule_1 = ctrl.Rule(
@@ -154,7 +159,8 @@ class FuzzyLogicModel:
 		timeliness = ctrl.Antecedent(np.arange(0, SCALE, 0.1), 'timeliness')
 
 		#Output Variable
-		quality = ctrl.Antecedent(np.arange(0, 99+SCALE, 1), 'quality')
+		# Consequent
+		quality = ctrl.Consequent(np.arange(0, 99+SCALE, 1), 'quality')
 
 		#latency
 		latency['increased_latency'] = fuzz.trimf(
