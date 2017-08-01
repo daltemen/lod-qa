@@ -1,6 +1,6 @@
 import os, sys
 
-from flmodel.model import FuzzyLogicModel
+from flogmodel.model import FuzzyLogicModel
 
 
 #FuzzyLogicModel.show_graphs()
