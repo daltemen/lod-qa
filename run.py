@@ -1,8 +1,8 @@
 import os, sys
 
 from flogmodel.model import FuzzyLogicModel
-from sparql_process.queries import execute_syntactic_validity
-from sparql_process.query_data import data
+from sparql_process.controllers.execute_queries import test
+from sparql_process.controllers.query_data import data
 
 #FuzzyLogicModel.show_graphs()
 

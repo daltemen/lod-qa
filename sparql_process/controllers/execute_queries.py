@@ -2,6 +2,10 @@ import pprint
 
 from SPARQLWrapper import SPARQLWrapper, JSON
 
+
+def test():
+	return 'hello'
+
 #return a dict
 def execute_query(endpoint, query):
 	sparql = SPARQLWrapper(endpoint)
