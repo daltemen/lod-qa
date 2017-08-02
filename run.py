@@ -1,7 +1,8 @@
 import os, sys
 
 from flogmodel.model import FuzzyLogicModel
-
+from sparql_process.queries import execute_syntactic_validity
+from sparql_process.query_data import data
 
 #FuzzyLogicModel.show_graphs()
 
@@ -13,15 +14,16 @@ syntactic_validaty = 12
 trustworthiness = 0.5
 timeliness = 0.7
 
-#
-fuzzy_instance = FuzzyLogicModel(latency,
-					scalability, syntactic_validaty,
-					trustworthiness, timeliness
-					)
+execute_model = False
+sparql_processes = True
 
-#Method for show graphs .show_graphs()
+if execute_model:
+	fuzzy_instance = FuzzyLogicModel(latency,
+						scalability, syntactic_validaty,
+						trustworthiness, timeliness
+						)
+	print ("Quality is", fuzzy_instance.get_output())
 
-
-#Method for processing quality
-print ("Quality is", fuzzy_instance.get_output())
-
+if sparql_processes:
+	#execute_syntactic_validity()
+	print(data)
