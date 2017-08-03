@@ -1,7 +1,7 @@
 import os, sys
 
 from flogmodel.model import FuzzyLogicModel
-from sparql_process.controllers.execute_queries import test
+from sparql_process.controllers.execute_queries import get_value_latency, clean_syntactic_validity
 from sparql_process.controllers.query_data import data
 
 #FuzzyLogicModel.show_graphs()
@@ -26,4 +26,10 @@ if execute_model:
 
 if sparql_processes:
 	#execute_syntactic_validity()
-	print(data)
+	print("---->Main")
+	print("Times latency (ms) in 50 datasets are: ", get_value_latency())
+	#not works
+
+	#print("Dict of descriptions are: ", clean_syntactic_validity())
+
+

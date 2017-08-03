@@ -1,10 +1,55 @@
+import timeit
 import pprint
 
 from SPARQLWrapper import SPARQLWrapper, JSON
 
+from query_data import data_experimental, data_experimental_getty
 
-def test():
-	return 'hello'
+
+#return value latency in a list
+def get_value_latency():
+
+	iterador = 2
+
+	times = []
+	for i in range(iterador):
+		start_latency = timeit.default_timer()
+		json_response = execute_query(
+			data_experimental['url'], data_experimental['queries'][0]
+			)
+		final_latency = timeit.default_timer()
+		time_latency = final_latency - start_latency
+		times.append(time_latency)
+
+	return times
+
+
+
+#return a comment text clean
+def clean_syntactic_validity():
+	json_response = execute_query(
+			data_experimental_getty['url'],
+			data_experimental_getty['queries'][0]
+			)
+	return json_response
+
+
+
+#return value timeliness
+def get_value_timeliness():
+	json_response = execute_query(
+		data_experimental['url'], data_experimental['queries'][0]
+		)
+
+	return json_response
+
+
+#return value timeliness
+def get_value_scalability():
+	json_response = execute_query(
+		data_experimental['url'], data_experimental['queries'][0]
+		)
+	return json_response
 
 #return a dict
 def execute_query(endpoint, query):
@@ -16,16 +61,6 @@ def execute_query(endpoint, query):
 
 	return results
 
-#return a comment text clean
-def clean_syntactic_validity():
-
-	#DO FOR syntanctic_validity
-
-	comments = []
-	comments = execute_query()
-	comments.append(execute_query())
-
-	pass
 
 
 def execute_query_example():
