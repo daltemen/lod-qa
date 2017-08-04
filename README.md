@@ -5,3 +5,5 @@ Fuzzy logic model to measure quality in linked open data
 
 Anaconda 4.3.0 (python 2.7), scikit-fuzzy, requests==2.18.2
 
+# How to Run 
+	$ python run.py
