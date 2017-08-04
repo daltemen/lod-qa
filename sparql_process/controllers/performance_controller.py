@@ -1,7 +1,7 @@
 import timeit
 import requests
 
-from ..constants import REQUEST_PERFORMANCE
+from constants import REQUEST_PERFORMANCE
 
 
 class Performance:
