@@ -1,7 +1,6 @@
 import json
 import pprint
 
-from query_data import data_experimental, data_experimental_getty
 from constants import DATASETS
 
 
