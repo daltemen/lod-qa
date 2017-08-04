@@ -1,3 +1,2 @@
 scikit-fuzzy==0.3
-
-SPARQLWrapper==1.8.0
+requests==2.18.2
