@@ -36,7 +36,7 @@ class Performance:
 				final_latency = timeit.default_timer()
 				time_latency = final_latency - start_latency
 				times.append(time_latency)
-			outfile.write(times.__str__())
+			outfile.write(','.join(map(str, times)))
 
 	def process_one_user(self):
 		print("--->in process_one_user")
