@@ -7,7 +7,7 @@ from constants import DATASETS
 class Dataset:
 
 	def __init__(self):
-		self.datasets = DATASETS_LIGHT
+		self.datasets = DATASETS
 
 	def get_title(self):
 		results = results_list()
