@@ -23,6 +23,7 @@ class Performance:
 		pass
 
 	def request_url_and_time(self, name_file=None, iterator=2):
+		print("i received", name_file)
 		times = []
 		count = 0
 		for i in range(iterator):
@@ -39,12 +40,9 @@ class Performance:
 			time_latency = final_latency - start_latency
 			times.append(time_latency)
 
-		return times
-
 	def process_one_user(self):
-		p1 = Process(target = self.request_url(
-			name_file='two_users_{}'.format(count)
-			))
+		print("--->in process_one_user")
+		p1 = Process(target = self.request_url_and_time, args=('one_users',))
 		p1.start()
 
 		while p1.is_alive() == True:
@@ -53,40 +51,39 @@ class Performance:
 		print("process_one Finished")
 
 	def process_two_users(self):
+		print("--->in process_two_user")
 		process_list = []
 		count = 0
 		for i in range(2):
 			count += 1
+			print("--->in {} iteration".format(count))
 			process = None
-			process = Process(target = self.request_url(
-				name_file='two_users_{}'.format(count)
-				))
+			process = Process(target = self.request_url_and_time,
+				args=('two_users_{}'.format(count),)
+				)
 			process.start()
 			process_list.append(process)
 
 		while all(p.is_alive() == True for p in process_list):
-			#not tested
-			#time.sleep(1)
 			pass
 
 		print("process_two_users Finished")
 
-
 	def process_eight_users(self):
+		print("--->in process_eight_users")
 		process_list = []
 		count = 0
 		for i in range(8):
 			count += 1
+			print("--->in {} iteration".format(count))
 			process = None
-			process = Process(target = self.request_url(
-				name_file='eight_users_{}'.format(count)
-				))
+			process = Process(target = self.request_url_and_time,
+				args=('eight_users_{}'.format(count),)
+				)
 			process.start()
 			process_list.append(process)
 
 		while all(p.is_alive() == True for p in process_list):
-			#not tested
-			#time.sleep(1)
 			pass
 
 		print("process_eight_users Finished")

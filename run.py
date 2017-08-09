@@ -4,7 +4,6 @@ from flogmodel.model import FuzzyLogicModel
 
 from sparql_process.controllers.performance_controller import Performance
 
-
 #FuzzyLogicModel.show_graphs()
 
 #Test values
@@ -31,4 +30,7 @@ if sparql_processes:
 
 	performance = Performance()
 
-	performance.get_latency_times()
+	#performance.get_latency_times()
+	#performance.process_one_user()
+	#performance.process_two_users()
+	performance.process_eight_users()
