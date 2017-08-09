@@ -19,26 +19,24 @@ class Performance:
 
 		return times
 
-	def get_scalability_times(self):
-		pass
-
 	def request_url_and_time(self, name_file=None, iterator=2):
-		print("i received", name_file)
-		times = []
-		count = 0
-		for i in range(iterator):
-			count += 1
-			start_latency = timeit.default_timer()
-			try:
-				r = requests.get(self.url)
-				print("satisfactory request No {}".format(count))
-			except Exception as e:
-				print(e)
-				print("request No {} fail".format(count))
+		with open(name_file+'.txt', 'w') as outfile:
+			times = []
+			count = 0
+			for i in range(iterator):
+				count += 1
+				start_latency = timeit.default_timer()
+				try:
+					r = requests.get(self.url)
+					print("satisfactory request No {}".format(count))
+				except Exception as e:
+					print(e)
+					print("request No {} fail".format(count))
 
-			final_latency = timeit.default_timer()
-			time_latency = final_latency - start_latency
-			times.append(time_latency)
+				final_latency = timeit.default_timer()
+				time_latency = final_latency - start_latency
+				times.append(time_latency)
+			outfile.write(times.__str__())
 
 	def process_one_user(self):
 		print("--->in process_one_user")

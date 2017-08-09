@@ -32,5 +32,5 @@ if sparql_processes:
 
 	#performance.get_latency_times()
 	#performance.process_one_user()
-	#performance.process_two_users()
-	performance.process_eight_users()
+	performance.process_two_users()
+	#performance.process_eight_users()
