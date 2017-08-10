@@ -1,2 +1,4 @@
 scikit-fuzzy==0.3
 requests==2.18.2
+3to2==1.1.1
+language-check==1.0

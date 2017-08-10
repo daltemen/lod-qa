@@ -10,7 +10,7 @@ class Dataset:
 		self.datasets = DATASETS
 
 	def get_title(self):
-		results = results_list()
+		results = self.results_list()
 		titles = []
 		for item in results:
 			titles.append(item.get('title'))
@@ -18,7 +18,7 @@ class Dataset:
 		return titles
 
 	def get_creators(self):
-		results = results_list()
+		results = self.results_list()
 		creators = []
 		for item in results:
 			creators.append(item.get('creator'))
@@ -26,7 +26,7 @@ class Dataset:
 		return creators, others
 
 	def get_issued_and_modified(self):
-		results = results_list()
+		results = self.results_list()
 		issued_list = []
 		modified_list = []
 		for item in results:
@@ -36,7 +36,7 @@ class Dataset:
 		return issued_list, modified_list
 
 	def get_descriptions(self):
-		results = results_list()
+		results = self.results_list()
 		descriptions_list = []
 		for item in results:
 			descriptions_list.append(item.get('description'))
@@ -44,7 +44,7 @@ class Dataset:
 		return descriptions_list
 
 	def results_list(self):
-		dataset_dict = convert_datasets_as_dict(self)
+		dataset_dict = self.convert_datasets_as_dict()
 		return dataset_dict['results']['bindings']
 
 	def convert_datasets_as_dict(self):
