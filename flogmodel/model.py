@@ -170,6 +170,7 @@ class FuzzyLogicModel:
 		quality = ctrl.Consequent(np.arange(0, 99+SCALE, 1), 'quality')
 
 		#latency
+		#TODO: Fixed graphs values
 		latency['increased_latency'] = fuzz.trimf(
 			latency.universe, [0, 43, 100])
 
