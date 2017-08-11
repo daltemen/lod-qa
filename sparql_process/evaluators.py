@@ -23,6 +23,7 @@ class Evaluator:
 			scalability = self.evaluate_scalability()
 			syntactic_validaty = self.language.get_errors_from_dataset()
 			trustworthiness = self.evaluate_trustworthiness_from_dataset()
+			#TODO: method for evaluate timeliness
 			#fake value temporal
 			timeliness = self.evaluate_trustworthiness_from_dataset()
 
