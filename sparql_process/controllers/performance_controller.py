@@ -17,8 +17,6 @@ class Performance:
 		time_latency = self.request_url_and_time(
 				name_file='latency_times')
 
-		return times
-
 	def request_url_and_time(self, name_file=None, iterator=2):
 		with open(name_file+'.txt', 'w') as outfile:
 			times = []

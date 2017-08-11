@@ -22,4 +22,4 @@ class LanguageCheck:
 				number_of_errors.append(len(matches))
 
 			outfile.write(','.join(map(str, number_of_errors)))
-			return number_of_errors
+		return number_of_errors

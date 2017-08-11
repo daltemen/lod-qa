@@ -23,7 +23,7 @@ class Dataset:
 		for item in results:
 			creators.append(item.get('creator'))
 
-		return creators, others
+		return creators
 
 	def get_issued_and_modified(self):
 		results = self.results_list()

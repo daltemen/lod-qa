@@ -171,19 +171,19 @@ class FuzzyLogicModel:
 
 		#latency
 		latency['increased_latency'] = fuzz.trimf(
-			latency.universe, [0, 53, 100])
+			latency.universe, [0, 43, 100])
 
 		latency['decreased_latency'] = fuzz.trimf(
-			latency.universe, [0, 0, 53])
+			latency.universe, [0, 0, 43])
 
 		#scalability
-		scalability['low_scalability'] = fuzz.trimf(
+		scalability['high_scalability'] = fuzz.trimf(
 			scalability.universe, [0, 0, 33])
 
 		scalability['medium_scalability'] = fuzz.trimf(
 			scalability.universe, [0, 33, 115])
 
-		scalability['high_scalability'] = fuzz.trimf(
+		scalability['low_scalability'] = fuzz.trimf(
 			scalability.universe, [34, 115, 116])
 
 		#syntactic_validaty
