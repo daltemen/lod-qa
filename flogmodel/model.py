@@ -155,7 +155,7 @@ class FuzzyLogicModel:
 	def get_model(self):
 		print "----> get model"
 
-		latency = ctrl.Antecedent(np.arange(0, 52+SCALE, 1), 'latency')
+		latency = ctrl.Antecedent(np.arange(0, 43+SCALE, 1), 'latency')
 		scalability = ctrl.Antecedent(np.arange(1, 116, 1), 'scalability')
 		syntactic_validaty = ctrl.Antecedent(np.arange(
 			0, 54+SCALE, 1), 'syntactic_validaty')
@@ -170,7 +170,6 @@ class FuzzyLogicModel:
 		quality = ctrl.Consequent(np.arange(0, 99+SCALE, 1), 'quality')
 
 		#latency
-		#TODO: Fixed graphs values
 		latency['increased_latency'] = fuzz.trimf(
 			latency.universe, [0, 43, 100])
 

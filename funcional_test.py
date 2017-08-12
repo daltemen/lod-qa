@@ -13,9 +13,9 @@ syntactic_validaty = 12
 trustworthiness = 0.5
 timeliness = 0.7
 
-execute_model = True
-sparql_processes = True
-evaluator = False
+execute_model = False
+sparql_processes = False
+evaluator = True
 checking = False
 
 if execute_model:

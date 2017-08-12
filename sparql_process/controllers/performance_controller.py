@@ -46,25 +46,6 @@ class Performance:
 
 		print("process_one Finished")
 
-	def process_two_users(self):
-		print("--->in process_two_user")
-		process_list = []
-		count = 0
-		for i in range(2):
-			count += 1
-			print("--->in {} iteration".format(count))
-			process = None
-			process = Process(target = self.request_url_and_time,
-				args=('two_users_{}'.format(count),)
-				)
-			process.start()
-			process_list.append(process)
-
-		while all(p.is_alive() == True for p in process_list):
-			pass
-
-		print("process_two_users Finished")
-
 	def process_eight_users(self):
 		print("--->in process_eight_users")
 		process_list = []
