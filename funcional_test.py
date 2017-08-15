@@ -1,6 +1,7 @@
 import os, sys
 
 from flogmodel.model import FuzzyLogicModel
+from sparql_process.evaluators import Evaluator
 
 from sparql_process.controllers.performance_controller import Performance
 from sparql_process.controllers.dataset_controller import Dataset
@@ -15,8 +16,9 @@ timeliness = 0.7
 
 execute_model = False
 sparql_processes = False
-evaluator = True
+dataset = False
 checking = False
+evaluators = True
 
 if execute_model:
 	fuzzy_instance = FuzzyLogicModel(latency,
@@ -36,7 +38,7 @@ if sparql_processes:
 	#performance.process_two_users()
 	#performance.process_eight_users()
 
-if evaluator:
+if dataset:
 	dataset_instance = Dataset()
 	print(dataset_instance.get_descriptions())
 	print(dataset_instance.get_creators())
@@ -45,3 +47,7 @@ if evaluator:
 if checking:
 	language_instance = LanguageCheck()
 	print(language_instance.get_errors_from_dataset())
+
+if evaluators:
+	evaluator = Evaluator()
+	print(evaluator.evaluate_timeliness())

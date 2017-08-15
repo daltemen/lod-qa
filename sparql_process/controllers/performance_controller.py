@@ -26,7 +26,7 @@ class Performance:
 				start_latency = timeit.default_timer()
 				try:
 					r = requests.get(self.url)
-					print("satisfactory request No {}".format(count))
+					print("------>Satisfactory request No {}".format(count))
 				except Exception as e:
 					print(e)
 					print("request No {} fail".format(count))
@@ -60,7 +60,7 @@ class Performance:
 			process.start()
 			process_list.append(process)
 
-		while all(p.is_alive() == True for p in process_list):
+		while any(p.is_alive() for p in process_list):
 			pass
 
 		print("process_eight_users Finished")

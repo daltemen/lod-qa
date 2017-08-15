@@ -7,7 +7,6 @@ from controllers.language_controller import LanguageCheck
 from controllers.performance_controller import Performance
 
 
-
 class Evaluator:
 	"""
 	Evaluators for determine 
@@ -19,17 +18,15 @@ class Evaluator:
 		self.language = LanguageCheck()
 
 	def send_to_model(self):
+		latency = self.evaluate_latency()
+		scalability = self.evaluate_scalability()
+		syntactic_validaty = self.language.get_errors_from_dataset()
+		trustworthiness = self.evaluate_trustworthiness_from_dataset()
+		timeliness = self.evaluate_timeliness()
+
+		quality_list = []
 		print("Evaluating Model-------->")
 		with open('QUALITY_OUTPUT.txt', 'w') as outfile:
-
-			#latency = self.evaluate_latency()
-			scalability = self.evaluate_scalability()
-			syntactic_validaty = self.language.get_errors_from_dataset()
-			trustworthiness = self.evaluate_trustworthiness_from_dataset()
-			timeliness = self.evaluate_timeliness()
-
-			quality_list = []
-
 			for l,sc,sy,tr,ti in zip(
 				latency, scalability,
 				syntactic_validaty, trustworthiness,
@@ -44,8 +41,8 @@ class Evaluator:
 
 			outfile.write(','.join(map(str, quality_list)))
 
-
 	def evaluate_latency(self):
+		print("evaluating latency...")
 		self.performance.get_latency_times()
 		file = open('latency_times.txt', 'r')
 		result = file.read().split(',')
@@ -53,20 +50,19 @@ class Evaluator:
 		return result
 
 	def evaluate_scalability(self):
+		print("evaluating scalability...")
 		self.performance.process_one_user()
 		self.performance.process_eight_users()
 		file_one = open('one_users.txt', 'r')
-		result_one = file_one.read().split(',')
+		result_one = [float(x) for x in file_one.read().split(",")]
 
 		list_of_lists = []
 		count = 0
 		for i in range(8):
 			count += 1
 			file = open('eight_users_{}.txt'.format(count),'r')
-			read = file.read().split(',')
+			read = [float(x) for x in file.read().split(",")]
 			list_of_lists.append(read)
-
-		import pdb; pdb.set_trace()
 
 		sum_list = [sum(item) for item in zip(*list_of_lists)]
 		divide_list = [i/8 for i in sum_list]
@@ -75,6 +71,7 @@ class Evaluator:
 		return result_list
 
 	def evaluate_trustworthiness_from_dataset(self):
+		print("evaluating trustworthiness...")
 		with open('trustworthiness.txt', 'w') as outfile:
 			dataset_list = self.dataset.get_creators()
 			description_dataset = ''
@@ -88,6 +85,7 @@ class Evaluator:
 		return trust_values_list
 
 	def evaluate_timeliness(self):
+		print("evaluating timeliness...")
 		dataset_issue, dataset_modified = self.dataset.get_issued_and_modified()
 		
 		result_list = []
