@@ -1,5 +1,6 @@
 import numpy as np
 import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
 #OUTPUT
 y = [1,2,3,4,3,4,5,4,5,5,4,5,4,5,4,5,6,5,4,5,4,3,4]
@@ -16,11 +17,19 @@ def reg_m():
     X = sm.add_constant(np.column_stack((x[0], ones)))
     for ele in x[1:]:
         X = sm.add_constant(np.column_stack((ele, X)))
-    results = sm.OLS(y, X).fit()
-    return results
+	results = sm.OLS(y, X).fit()
+	fig, ax = plt.subplots()
+	fig = sm.graphics.plot_fit(results, 0, ax=ax)
+	ax.set_ylabel("Murder Rate")
+	ax.set_xlabel("Poverty Level")
+	ax.set_title("Linear Regression")
+	return results
 
 def show_summary():
 	print reg_m().summary()
+	
+	plt.show()
+	
 
 #TODO: Implement the same above with the below 
 
