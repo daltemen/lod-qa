@@ -86,17 +86,17 @@ class Evaluator:
 
 	def evaluate_timeliness(self):
 		print("evaluating timeliness...")
-		dataset_issue, dataset_modified = self.dataset.get_issued_and_modified()
-		
-		result_list = []
-		# (current - modified) / (current - issued)
-		for i, m in zip(dataset_issue, dataset_modified):
-			result_list.append(
-				(datetime.today().year - int(datetime.strptime(m['value'],
-					'%Y-%m-%d+%H:%M').strftime('%Y'))
-				) / 
-				(datetime.today().year - int(datetime.strptime(i['value'],
-					'%Y-%m-%d+%H:%M').strftime('%Y')))
-			)
-
+		with open('timeliness.txt', 'w') as outfile:
+			dataset_issue, dataset_modified = self.dataset.get_issued_and_modified()
+			result_list = []
+			# (current - modified) / (current - issued)
+			for i, m in zip(dataset_issue, dataset_modified):
+				result_list.append(float(
+					(datetime.today().year - int(datetime.strptime(m['value'],
+						'%Y-%m-%d+%H:%M').strftime('%Y'))
+					)) / 
+					(datetime.today().year - int(datetime.strptime(i['value'],
+						'%Y-%m-%d+%H:%M').strftime('%Y')))
+				)
+			outfile.write(','.join(map(str, result_list)))	
 		return result_list
