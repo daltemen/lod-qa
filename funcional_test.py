@@ -1,5 +1,6 @@
 import os, sys
 
+from data_analysis.regresion import show_summary
 from flogmodel.model import FuzzyLogicModel
 from sparql_process.evaluators import Evaluator
 
@@ -18,7 +19,11 @@ execute_model = False
 sparql_processes = False
 dataset = False
 checking = False
-evaluators = True
+evaluators = False
+analysis = True
+
+if analysis:
+	show_summary()
 
 if execute_model:
 	fuzzy_instance = FuzzyLogicModel(latency,
