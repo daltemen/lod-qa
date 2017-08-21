@@ -156,7 +156,7 @@ class FuzzyLogicModel:
 		print "----> get model"
 
 		latency = ctrl.Antecedent(np.arange(0, 43+SCALE, 1), 'latency')
-		scalability = ctrl.Antecedent(np.arange(1, 116, 1), 'scalability')
+		scalability = ctrl.Antecedent(np.arange(0, 0.1+SCALE, 0.1), 'scalability')
 		syntactic_validaty = ctrl.Antecedent(np.arange(
 			0, 54+SCALE, 1), 'syntactic_validaty')
 
@@ -178,13 +178,13 @@ class FuzzyLogicModel:
 
 		#scalability
 		scalability['high_scalability'] = fuzz.trimf(
-			scalability.universe, [0, 0, 33])
+			scalability.universe, [0.5, 1, 1.1])
 
 		scalability['medium_scalability'] = fuzz.trimf(
-			scalability.universe, [0, 33, 115])
+			scalability.universe, [0, 0.5, 1])
 
 		scalability['low_scalability'] = fuzz.trimf(
-			scalability.universe, [34, 115, 116])
+			scalability.universe, [0, 0, 0.5])
 
 		#syntactic_validaty
 		syntactic_validaty['low_syntactic_validaty'] = fuzz.trimf(
